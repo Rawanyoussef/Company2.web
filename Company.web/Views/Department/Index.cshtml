@@ -1,0 +1,42 @@
+﻿@using Company.Data.Models
+
+@model IEnumerable<Department>
+@{
+    ViewData["Title"] = "Index";
+}
+@* <a asp-controller="Department" asp-action="Create" class="btn btn-primary">Create new Department</a>
+ *@@if (Model.Count() > 0)
+{
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Code</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var department in Model)
+            {
+                <tr>
+                    <th scope="row">@department.Id</th>
+                    <td>@department.Name</td>
+                    <td>@department.Code</td>
+                    <td>
+                        <a href="@Url.Action("Details", "Department", new { id = @department.Id })" class="btn btn-info">Details</a>
+                        <a href="@Url.Action("Edit", "Department", new { id = @department.Id })" class="btn btn-primary">Update</a>
+                        <a href="@Url.Action("Delete", "Department", new { id = @department.Id })" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a href="@Url.Action("Create", "Department")" class="btn btn-success">Add New Department</a>
+}
+else
+{
+    <h3>There is no department</h3>
+    <a href="@Url.Action("Create", "Department")" class="btn btn-success">Add New Department</a>
+}
