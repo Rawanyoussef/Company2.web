@@ -4,6 +4,15 @@ namespace Company.Reposatory.Interfaces
 {
     public interface IEmployeeReposatory: IGenaricReopsatory<Employee>
     {
+
+
+        IEnumerable< Employee?> GetEmployeeByName(string name);
+        IEnumerable<Employee> GetEmployeesByAddress(string Address);
+
+
+
+
+
         //Employee GetById(int id);
         //IEnumerable<Employee> GetAll();
 

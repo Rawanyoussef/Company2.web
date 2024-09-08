@@ -39,6 +39,7 @@ namespace Company.Reposatory.Reposatory
         public void Update(T entity)
         {
             _context.Set<T>().Update(entity);
+        
 
         }
     }

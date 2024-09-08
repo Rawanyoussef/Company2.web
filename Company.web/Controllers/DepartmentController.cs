@@ -1,9 +1,8 @@
 ﻿using Company.Data.Models;
 using Company.Reposatory.Interfaces;
+using Company.Servies.Interfaces.services.Dto;
 using Company.web.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Client;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 
 namespace Company.web.Controllers
 {
@@ -15,41 +14,40 @@ namespace Company.web.Controllers
         {
             _departmentService = departmentService;
         }
+
         public IActionResult Index()
         {
-          var departments = _departmentService.GetAll();
-
-            return View(departments);
+            var departments = _departmentService.GetAll();
+            return View(departments); // تأكد أن View تستقبل DepartmentDto
         }
-     
+
         public IActionResult Create()
         {
             return View();
-
         }
-        [HttpPost] 
-        public IActionResult Create(Department department)
+
+        [HttpPost]
+        public IActionResult Create(DepartmentDto departmentDto)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _departmentService.Add(department);
+                    _departmentService.Add(departmentDto);
                     return RedirectToAction("Index");
                 }
-                ModelState.AddModelError("DepartmentError", "validationErrors");
-                return View(department);
-            }
 
+                ModelState.AddModelError("DepartmentError", "Validation errors");
+                return View(departmentDto);
+            }
             catch (Exception ex)
             {
-                ModelState.AddModelError("DepartmentError",ex.Message);
-                return View(department);
+                ModelState.AddModelError("DepartmentError", ex.Message);
+                return View(departmentDto);
             }
-            
         }
 
-        public IActionResult Details(int? id , string ViewName ="Details")
+        public IActionResult Details(int? id, string ViewName = "Details")
         {
             if (id == null)
             {
@@ -61,22 +59,33 @@ namespace Company.web.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return View(department);
+
+            return View(ViewName, department);
         }
 
         public IActionResult Edit(int? id)
         {
-
-            return Details(id, "Update");
+            return Details(id, "Edit");
         }
+
         [HttpPost]
-        public IActionResult Edit(int? id ,Department department )
+        public IActionResult Edit(int? id, DepartmentDto departmentDto)
         {
-            if(department.Id == id.Value) 
-            {return RedirectToAction("Index");
+            if (!id.HasValue || departmentDto == null || departmentDto.Id != id.Value)
+            {
+                return RedirectToAction("Index");
             }
-            _departmentService.Update(department);
-            return View(department);
+
+            try
+            {
+                _departmentService.Update(departmentDto);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("DepartmentError", ex.Message);
+                return View(departmentDto);
+            }
         }
 
         public IActionResult Delete(int? id)
@@ -94,6 +103,7 @@ namespace Company.web.Controllers
 
             return View(department);
         }
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
@@ -108,7 +118,4 @@ namespace Company.web.Controllers
             return RedirectToAction("Index");
         }
     }
-
-
 }
-

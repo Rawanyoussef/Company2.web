@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Company.Reposatory.Interfaces
 {
-    public interface IDepartmentReposatory: IGenaricReopsatory<Department>
+    public interface IDepartmentReposatory : IGenaricReopsatory<Department>
     {
 
         //Department GetById(int id);
@@ -16,6 +16,6 @@ namespace Company.Reposatory.Interfaces
         //void Update(Department department);
         //void Delete(Department department);
         //void Add(Department department);
-
+     
     }
 }

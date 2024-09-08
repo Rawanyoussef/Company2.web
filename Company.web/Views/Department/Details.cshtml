@@ -1,5 +1,4 @@
-﻿@model Company.Data.Models.Department
-
+﻿@model DepartmentDto
 @{
     ViewData["Title"] = "Department Details";
 }
@@ -20,7 +19,7 @@
                 <dd class="col-sm-9">@Model.Code</dd>
 
                 <dt class="col-sm-3">Created At</dt>
-                <dd class="col-sm-9">@Model.Createatd.ToString("yyyy-MM-dd")</dd>
+                @* <dd class="col-sm-9">@Model.Createatd.ToString("yyyy-MM-dd")</dd> *@
             </dl>
         </div>
     </div>

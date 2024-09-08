@@ -1,11 +1,13 @@
 ﻿@using Company.Data.Models
+@using Company.Servies.Interfaces.services.Dto
 
-@model IEnumerable<Department>
+@model IEnumerable<DepartmentDto>
+
 @{
     ViewData["Title"] = "Index";
 }
-@* <a asp-controller="Department" asp-action="Create" class="btn btn-primary">Create new Department</a>
- *@@if (Model.Count() > 0)
+
+@if (Model.Any())
 {
     <table class="table table-dark">
         <thead>
@@ -24,9 +26,9 @@
                     <td>@department.Name</td>
                     <td>@department.Code</td>
                     <td>
-                        <a href="@Url.Action("Details", "Department", new { id = @department.Id })" class="btn btn-info">Details</a>
-                        <a href="@Url.Action("Edit", "Department", new { id = @department.Id })" class="btn btn-primary">Update</a>
-                        <a href="@Url.Action("Delete", "Department", new { id = @department.Id })" class="btn btn-danger">Delete</a>
+                        <a href="@Url.Action("Details", "Department", new { id = department.Id })" class="btn btn-info">Details</a>
+                        <a href="@Url.Action("Edit", "Department", new { id = department.Id })" class="btn btn-primary">Update</a>
+                        <a href="@Url.Action("Delete", "Department", new { id = department.Id })" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
             }
@@ -37,6 +39,6 @@
 }
 else
 {
-    <h3>There is no department</h3>
+    <h3>There are no departments</h3>
     <a href="@Url.Action("Create", "Department")" class="btn btn-success">Add New Department</a>
 }

@@ -9,11 +9,22 @@ using System.Threading.Tasks;
 
 namespace Company.Reposatory.Reposatory
 {
-    public class EmployeeReposatory : GenaricReposatory<Employee>,IEmployeeReposatory
+    public class EmployeeReposatory : GenaricReposatory<Employee>, IEmployeeReposatory
     {
         private readonly CompanyDBContext _context;
 
-        public EmployeeReposatory(CompanyDBContext context): base(context) { }
+        public EmployeeReposatory(CompanyDBContext context): base(context) 
+        {
+            _context = context;
+        }
+
+        public IEnumerable<Employee> GetEmployeeByName(string name)
+        => _context.Employees.Where(x => x.Name.Trim().ToLower().Contains(name.Trim().ToLower()));
+
+        IEnumerable<Employee> IEmployeeReposatory.GetEmployeesByAddress(string Address)
+        {
+            throw new NotImplementedException();
+        }
         //{
         //    _context = context;
         //}

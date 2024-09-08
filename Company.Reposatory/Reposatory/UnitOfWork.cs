@@ -21,6 +21,9 @@ namespace Company.Reposatory.Reposatory
 
         public IDepartmentReposatory DepartmentReposatory { get; set; }
         public IEmployeeReposatory EmployeeReposatory { get; set; }
+
+        public object EmployeeRepository => throw new NotImplementedException();
+
         public int Complete()
         {
          return _context.SaveChanges();

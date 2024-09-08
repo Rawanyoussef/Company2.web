@@ -1,6 +1,8 @@
 using Company.Data.Contexts;
 using Company.Reposatory.Interfaces;
 using Company.Reposatory.Reposatory;
+using Company.Services.Services;
+using Company.Servies.Mapping;
 using Company.web.Interfaces;
 using Company.web.Interfaces.services;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +27,9 @@ namespace Company.web
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
             builder.Services.AddScoped<IDepartmentServices, DepartmentService>();
+            builder.Services.AddAutoMapper(x=>x.AddProfile(new EmployeeProfile()));
+            builder.Services.AddAutoMapper(x => x.AddProfile(new DepartmentProfile()));
+
 
             var app = builder.Build();
 
