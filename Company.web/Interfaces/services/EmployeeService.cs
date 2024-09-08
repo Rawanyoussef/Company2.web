@@ -1,4 +1,4 @@
-﻿using Company.Data.Models;
+using Company.Data.Models;
 using Company.Reposatory.Interfaces;
 using Company.Reposatory.Reposatory;
 
@@ -24,6 +24,8 @@ namespace Company.web.Interfaces.services
                     Phone = employee.Phone,
                     HiringDate = employee.HiringDate,
                     DepartmentID = employee.DepartmentID  
+
+
                 };
 
                 _UnitOfWork.EmployeeReposatory.Add(mappedEmployee);
@@ -43,9 +45,11 @@ namespace Company.web.Interfaces.services
 
         public IEnumerable<Employee> GetAll()
         {
-            return _UnitOfWork.EmployeeReposatory.GetAll();
+           var employees= _UnitOfWork.EmployeeReposatory.GetAll();
+            return employees;
         }
 
+      
         public Employee GetById(int id)
         {
             if (id == null)
