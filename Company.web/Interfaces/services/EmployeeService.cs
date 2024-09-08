@@ -48,7 +48,12 @@ namespace Company.web.Interfaces.services
 
         public Employee GetById(int id)
         {
-            return _UnitOfWork.EmployeeReposatory.GetById(id);
+            if (id == null)
+                throw new Exception("id IS NULL");
+            var employees = _UnitOfWork.EmployeeReposatory.GetById(id);
+            if (employees == null)
+                return null;
+            return employees;
         }
 
         public void Update(Employee employee)
