@@ -1,6 +1,7 @@
 using Company.Data.Models;
 using Company.Reposatory.Interfaces;
 using Company.Reposatory.Reposatory;
+using Company.Servies.Interfaces.services.Dto;
 
 namespace Company.web.Interfaces.services
 {
@@ -34,6 +35,11 @@ namespace Company.web.Interfaces.services
 
         }
 
+        public void Add(EmployeeDto employee)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Delete(Employee employee)
         {
 
@@ -41,6 +47,11 @@ namespace Company.web.Interfaces.services
             _UnitOfWork.Complete();
 
 
+        }
+
+        public void Delete(EmployeeDto employee)
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Employee> GetAll()
@@ -60,11 +71,31 @@ namespace Company.web.Interfaces.services
             return employees;
         }
 
+        public EmployeeDto GetById(int? id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<EmployeeDto> GetEmployeeDtoByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Employee employee)
         {
             _UnitOfWork.EmployeeReposatory.Update(employee);
             _UnitOfWork.Complete();
 
+        }
+
+        public void Update(EmployeeDto employee)
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerable<EmployeeDto> IEmployeeService.GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

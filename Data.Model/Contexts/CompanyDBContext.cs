@@ -1,17 +1,14 @@
-﻿using Company.Data.Contexts.Configrations;
-using Company.Data.Models;
+﻿using Company.Data.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Company.Data.Contexts
 {
-    public class CompanyDBContext :DbContext
+    public class CompanyDBContext :IdentityDbContext<ApplicationUser>
     {
+        public CompanyDBContext() { }
         public CompanyDBContext(DbContextOptions<CompanyDBContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
