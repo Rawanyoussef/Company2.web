@@ -25,9 +25,9 @@ namespace Company.Web.Models
             [Compare("Password", ErrorMessage = "Passwords do not match")]
             public string ConfirmPassword { get; set; }
 
-            [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
-                ErrorMessage = "Password must be at least 8 characters long, include uppercase, lowercase, a number, and a special character")]
-            public string PasswordRegexValidation { get; set; }
+           // [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
+              //  ErrorMessage = "Password must be at least 8 characters long, include uppercase, lowercase, a number, and a special character")]
+          //  public string PasswordRegexValidation { get; set; }
         }
     }
 

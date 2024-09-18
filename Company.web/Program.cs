@@ -55,7 +55,7 @@ namespace Company.web
                 option.LoginPath = "/Account/Login";
                 option.LogoutPath = "/Account/Logout";
                 option.AccessDeniedPath = "/Account/AccessDeniend";
-                option.Cookie.Name = "/rawan cookies";
+               // option.Cookie.Name = "/rawancookies";
                 option.Cookie.SecurePolicy= CookieSecurePolicy.Always;
                 option.Cookie.SameSite = SameSiteMode.Strict;
 
@@ -82,7 +82,7 @@ namespace Company.web
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Account}/{action=SignUp}/{id?}");
 
             app.Run();
         }
