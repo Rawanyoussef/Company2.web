@@ -1,0 +1,21 @@
+﻿@model RoleUpdateViewModel
+
+@{
+    ViewData["Title"] = "Role Details";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h1>Role Details</h1>
+
+<div>
+    <h4>Role Name:</h4>
+    <p>@Model.RoleName</p>
+
+    <h4>Role ID:</h4>
+    <p>@Model.RoleId</p>
+</div>
+
+<div>
+    <a href="@Url.Action("Update", new { id = Model.RoleId })" class="btn btn-primary">Edit Role</a>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+</div>

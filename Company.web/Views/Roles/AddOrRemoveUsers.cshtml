@@ -1,0 +1,35 @@
+﻿@model IEnumerable<UserInRoleViewModel>
+@{
+    ViewData["Title"] = "AddOrRemoveUsers";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h1>Add or Remove Users</h1>
+
+<form asp-action="AddOrRemoveUsers" method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Username</th>
+                <th>User ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" asp-for="@user.IsSelected" />
+                        <input type="hidden" name="UserIds" value="@user.UserId" />
+                    </td>
+                    <td>@user.UserName</td>
+                    <td>@user.UserId</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a href="@Url.Action("Index", "Roles")" class="btn btn-secondary">Cancel</a>
+</form>

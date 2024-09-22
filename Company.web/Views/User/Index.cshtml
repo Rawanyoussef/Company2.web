@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ApplicationUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>User List</h2>
+
+<form method="get">
+    <input type="text" name="searchInp" placeholder="Search by email" value="@Context.Request.Query["searchInp"]" />
+    <button type="submit">Search</button>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>@user.UserName</td>
+                    <td>
+                        <!-- You can add actions like Edit, Delete, etc. here -->
+                        <a href="@Url.Action("Update", new { id = user.Id })" class="btn btn-primary">Update</a>
+                        <a href="@Url.Action("Delete", new { id = user.Id })" class="btn btn-danger">Delete</a>
+                        <a href="@Url.Action("Details", new { id = user.Id })" class="btn btn-Secondry">Details</a>
+
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3">No users found</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,36 @@
+﻿@model ApplicationUser
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">Email:</dt>
+        <dd class="col-sm-10">@Model.Email</dd>
+
+        <dt class="col-sm-2">Username:</dt>
+        <dd class="col-sm-10">@Model.UserName</dd>
+
+        <!-- Add other fields that are relevant for the user -->
+        @* Example: if you want to display more fields, you can uncomment and modify below *@
+        @*
+        <dt class="col-sm-2">Phone Number:</dt>
+        <dd class="col-sm-10">@Model.PhoneNumber</dd>
+
+        <dt class="col-sm-2">Role:</dt>
+        <dd class="col-sm-10">
+        <!-- Assuming the user has a role, you can retrieve and display it here -->
+        </dd>
+        *@
+    </dl>
+
+    <div>
+        <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+        <a href="@Url.Action("Update", new { id = Model.Id })" class="btn btn-primary">Update</a>
+        <a href="@Url.Action("Delete", new { id = Model.Id })" class="btn btn-danger">Delete</a>
+    </div>
+</div>
+
